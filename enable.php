@@ -1,0 +1,73 @@
+<?php
+if (!defined('IN_CMS')) { exit(); }
+
+/**
+* Form Builder
+* 
+* Lets you create and display forms.
+* 
+* @author Nic Wortel <nd.wortel@gmail.com>
+* 
+* @file         /enable.php
+* @date         31/05/2012
+*/
+
+Plugin::setAllSettings(array(
+    'success_message' => '<p>The form has been submitted succesfully.</p>',
+    'invalid_message' => '<p>The form has not been submitted.</p>',
+    'error_message' => '<p>An error has ocurred and the email has not been sent. Please try again.</p>'
+), 'form');
+
+$permissions = array(
+    'form_builder_view',
+    'form_add',
+    'form_edit',
+    'form_delete'
+);
+
+foreach ($permissions as $permission) {
+    $perm = new Permission();
+    $perm->name = $permission;
+    $perm->save();
+}
+
+$PDO = Record::getConnection();
+
+$sql = "CREATE TABLE IF NOT EXISTS `".TABLE_PREFIX."form` (
+  `id` int(1) NOT NULL auto_increment,
+  `name` varchar(255) NOT NULL,
+  `mail_to` varchar(255) NOT NULL,
+  `created_on` datetime NOT NULL,
+  `updated_on` datetime NOT NULL,
+  `created_by_id` int(1) NOT NULL,
+  `updated_by_id` int(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ;";
+
+$PDO->exec($sql);
+
+$sql = "CREATE TABLE IF NOT EXISTS `".TABLE_PREFIX."form_field` (
+  `id` int(1) NOT NULL auto_increment,
+  `label` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `type` varchar(50) NOT NULL,
+  `required` tinyint(1) DEFAULT 0,
+  `form_id` int(1) NOT NULL,
+  `position` int(1) DEFAULT 0,
+  PRIMARY KEY (`id`),
+  KEY `form_id` (`form_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ;";
+
+$PDO->exec($sql);
+
+$sql = "CREATE TABLE IF NOT EXISTS `".TABLE_PREFIX."form_field_option` (
+  `id` int(1) NOT NULL auto_increment,
+  `label` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `field_id` int(1) NOT NULL,
+  `position` int(1) DEFAULT 0,
+  PRIMARY KEY (`id`),
+  KEY `field_id` (`field_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 ;";
+
+$PDO->exec($sql);

@@ -1,0 +1,27 @@
+div#form {
+    margin: 1em auto;
+}
+
+#form table th,
+#form table td {
+    padding: 3px 6px;
+    
+    vertical-align: top;
+}
+
+#form table tr:nth-child(odd) {
+    background-color: #eee;
+}
+
+#form table th:first-child,
+#form table td:first-child {
+    padding-left: 0;
+}
+
+#form table th {
+    text-align: left;
+}
+
+#form table.fields {
+    width: 100%;
+}
