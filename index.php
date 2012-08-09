@@ -24,7 +24,7 @@ Plugin::setInfos(array(
     'title'                 => __('Form'),
     'description'           => __('Lets you create and display forms.'),
     'author'                => 'Nic Wortel',
-    'version'               => '0.1.0',
+    'version'               => '0.1.1',
     'website'               => 'http://www.wolfcms.org/repository/111',
     'require_wolf_version'  => '0.7.5',
     'type'                  => 'backend'
