@@ -90,6 +90,12 @@ class Form extends Record {
         return true;
     }
     
+    public function emails() {
+        $emails = explode(';',$this->mail_to);
+        
+        return $emails;
+    }
+    
     public static function findAll() {
         return Record::findAllFrom('Form');
     }

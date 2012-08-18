@@ -28,6 +28,8 @@ if (!defined('IN_CMS')) { exit(); }
     </tr>
 </table></p>
 
+<p><?php echo __('You can seperate multiple e-mail addresses with a semicolon.'); ?></p>
+
 <p><table class="fields">
     <tr>
         <th><?php echo __('Label'); ?></th>

@@ -52,21 +52,30 @@ function display_form($id) {
                 
                 $email = new Email(array('mailtype' => 'html'));
                 
-                $email->from(Setting::get('admin_email'), Setting::get('admin_title'));
-                $email->to($form->mail_to);
-                $email->subject($form->name);
-                $email->message($email_body);
+                $errors = 0;
                 
-                if($email->send()) {
-                    echo Plugin::getSetting('success_message', 'form');
+                $receivers = explode(';', $form->mail_to);
+                foreach ($receivers as $receiver) {
+                    $email->from(Setting::get('admin_email'), Setting::get('admin_title'));
+                    $email->to($receiver);
+                    $email->subject($form->name);
+                    $email->message($email_body);
+
+                    if(!$email->send()) {
+                        $errors++;
+                    }
                 }
-                else {
+                
+                if ($errors > 0) {
                     $form->values = $data;
-                    
+
                     echo Plugin::getSetting('error_message', 'form');
                     echo new View('../../plugins/form/views/frontend/form_html', array(
                         'form' => $form
                     ));
+                }
+                else {
+                    echo Plugin::getSetting('success_message', 'form');
                 }
             }
             else {

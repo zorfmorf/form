@@ -119,11 +119,15 @@ class FormController extends PluginController {
         if (empty($data['name'])) {
             $errors[] = __('You have to specify a form name!');
         }
-        if (empty($data['mail_to'])) {
-            $errors[] = __('You have to specify a valid email address!');
-        }
-        elseif (!Validate::email($data['mail_to'])) {
-            $errors[] = __('You have to specify a valid email address!');
+        
+        $emails = explode(';', $data['mail_to']);
+        foreach ($emails as $email) {
+            if (empty($email)) {
+                $errors[] = ('You have to specify one or more valid email addresses!');
+            }
+            elseif (!Validate::email($email)) {
+                $errors[] = ('You have to specify one or more valid email addresses!');
+            }
         }
         
         if ($action == 'add') {

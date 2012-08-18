@@ -50,6 +50,7 @@ return array(
     'Type' => 'Type',
     'Under options you can specify the different options in case of a dropdown list, checkboxes or radio buttons. Seperate with a semicolon.' => 'Onder opties kun je de verschillende opties specificeren voor een keuzelijst, selectievakjes of keuzerondjes. Scheid de opties met een puntkomma.',
     'Use the following piece of PHP code in the page were you want to include the form:' => 'Gebruik de volgende PHP code in de pagina waarin je het formulier wilt tonen:',
+    'You can seperate multiple e-mail addresses with a semicolon.' => 'U kunt meerdere e-mailadressen scheiden met een puntkomma.',
     'You have to specify a form name!' => 'U dient een formuliernaam op te geven!',
-    'You have to specify a valid email address!' => 'U dient een geldig e-mailadres op te geven!'
+    'You have to specify one or more valid email addresses!' => 'U dient één of meerdere geldige e-mailadressen op te geven!'
 );
