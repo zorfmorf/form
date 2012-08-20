@@ -34,7 +34,7 @@ AutoLoader::addFolder(FORM.'/models');
 
 Plugin::addController('form', __('Forms'), 'form_builder_view', true);
 
-function display_form($id) {
+function display_form($id, $html5 = false) {
     if ($form = Form::findById($id)) {
         if (get_request_method() == 'POST') {
             (object) $data = $_POST['form'];
@@ -70,9 +70,7 @@ function display_form($id) {
                     $form->values = $data;
 
                     echo Plugin::getSetting('error_message', 'form');
-                    echo new View('../../plugins/form/views/frontend/form_html', array(
-                        'form' => $form
-                    ));
+                    $form->display($html5);
                 }
                 else {
                     echo Plugin::getSetting('success_message', 'form');
@@ -82,15 +80,11 @@ function display_form($id) {
                 $form->values = $data;
                 
                 echo Plugin::getSetting('invalid_message', 'form');
-                echo new View('../../plugins/form/views/frontend/form_html', array(
-                    'form' => $form
-                ));
+                $form->display($html5);
             }
         }
         else {
-            echo new View('../../plugins/form/views/frontend/form_html', array(
-                'form' => $form    
-            ));
+            $form->display($html5);
         }
         
     }

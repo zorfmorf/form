@@ -21,6 +21,7 @@ return array(
     'After enabling the Form plugin, you can click the Settings button to change the messages that are shown after submitting the form.' => 'Na de Formulier plugin te hebben geactiveerd kun je op de knop Instellingen klikken om de berichten bij het indienen van een formulier te wijzigen.',
     'Checkboxes' => 'Selectievakjes',
     'Delete' => 'Verwijderen',
+    "Do you want a HTML5 compliant form? Use the following code:" => "Wilt u HTML5 formulieren gebruiken? Gebruik dan de volgende code:",
     "Don't forget to replace id with the id of your form!" => 'Vergeet niet om id te vervangen met het id van het formulier!',
     'Dropdown' => 'Keuzelijst',
     'Email address' => 'E-mailadres',
