@@ -44,9 +44,10 @@ function display_form($id, $html5 = false) {
                 $email_body = '';
                 
                 $email_body .= "<table style=\"font: 12px/18px 'Arial','Helvetica',sans-serif;\">";
-                foreach($data as $label => $value)
-                {
-                    $email_body .= '<tr><th style="text-align: left; vertical-align: top; white-space:nowrap;">'.ucfirst($label).':</th><td style="text-align: left; vertical-align: top;">'.nl2br($value)."</td></tr>";
+                foreach($form->fields as $field) {
+                    $value = $data[$field->slug];
+                    
+                    $email_body .= '<tr><th style="text-align: left; vertical-align: top; white-space:nowrap;">'. $field->label .':</th><td style="text-align: left; vertical-align: top;">'.nl2br($value)."</td></tr>";
                 }
                 $email_body .= '</table>';
                 
