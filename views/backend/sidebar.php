@@ -19,14 +19,12 @@ if (!defined('IN_CMS')) { exit(); }
         <?php echo __('Forms'); ?>
     </a>
 </p>
-<?php if (AuthUser::hasPermission('form_add')): ?>
 <p class="button">
     <a href="<?php echo get_url("plugin/form/add"); ?>">
         <img width="32" height="32" src="<?php echo URL_PUBLIC; ?>wolf/icons/add-32.png" align="middle" alt="<?php echo __('Add form'); ?>" />
         <?php echo __('Add form'); ?>
     </a>
 </p>
-<?php endif; ?>
 <p class="button">
     <a href="<?php echo get_url("plugin/form/settings"); ?>">
         <img width="32" height="32" src="<?php echo URL_PUBLIC; ?>wolf/icons/settings-32.png" align="middle" alt="<?php echo __('Settings'); ?>" />
