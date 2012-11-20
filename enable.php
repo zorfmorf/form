@@ -1,16 +1,18 @@
 <?php
 if (!defined('IN_CMS')) { exit(); }
 
-/**
-* Form Builder
-* 
-* Lets you create and display forms.
-* 
-* @author Nic Wortel <nd.wortel@gmail.com>
-* 
-* @file         /enable.php
-* @date         31/05/2012
-*/
+/*
+ * Form
+ * 
+ * The Form plugin is a third-party plugin that lets you create and display forms on your installation of Wolf CMS.
+ * 
+ * @package     Plugins
+ * @subpackage  form
+ * 
+ * @author      Nic Wortel <nic.wortel@nth-root.nl>
+ * @copyright   Nic Wortel, 2012
+ * @version     0.1.1
+ */
 
 Plugin::setAllSettings(array(
     'success_message' => '<p>The form has been submitted succesfully.</p>',

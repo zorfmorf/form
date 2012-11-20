@@ -1,18 +1,18 @@
 <?php
-
 if (!defined('IN_CMS')) { exit(); }
 
-/**
-* Media Gallery
-* 
-* Plugin for displaying images and video albums
-* 
-* @author Nic Wortel <nd.wortel@gmail.com>
-* 
-* @file        /i18n/nl-message.php
-* @date        12/08/2011
-* 
-*/
+/*
+ * Form
+ * 
+ * The Form plugin is a third-party plugin that lets you create and display forms on your installation of Wolf CMS.
+ * 
+ * @package     Plugins
+ * @subpackage  form
+ * 
+ * @author      Nic Wortel <nic.wortel@nth-root.nl>
+ * @copyright   Nic Wortel, 2012
+ * @version     0.1.1
+ */
 
 return array(
     'Add form' => 'Formulier toevoegen',

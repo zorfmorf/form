@@ -1,16 +1,18 @@
 <?php
 if (!defined('IN_CMS')) { exit(); }
 
-/**
-* Catalog
-* 
-* Plugin for displaying articles or products that can be bought at different sellers.
-* 
-* @author Nic Wortel <nd.wortel@gmail.com>
-* 
-* @file        /views/backend/sidebar.php
-* @date        13/10/2011
-*/
+/*
+ * Form
+ * 
+ * The Form plugin is a third-party plugin that lets you create and display forms on your installation of Wolf CMS.
+ * 
+ * @package     Plugins
+ * @subpackage  form
+ * 
+ * @author      Nic Wortel <nic.wortel@nth-root.nl>
+ * @copyright   Nic Wortel, 2012
+ * @version     0.1.1
+ */
 
 ?>
 <p class="button">
