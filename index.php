@@ -60,6 +60,9 @@ function display_form($id, $html5 = false) {
                 $receivers = trim(explode(';', $form->mail_to));
                 foreach ($receivers as $receiver) {
                     $email->from(Setting::get('admin_email'), Setting::get('admin_title'));
+                    if (isset($sender)) {
+                        $email->replyTo($sender);
+                    }
                     $email->to($receiver);
                     $email->subject($form->name);
                     $email->message($email_body);
