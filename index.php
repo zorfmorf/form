@@ -57,7 +57,7 @@ function display_form($id, $html5 = false) {
                 
                 $errors = 0;
                 
-                $receivers = explode(';', $form->mail_to);
+                $receivers = trim(explode(';', $form->mail_to));
                 foreach ($receivers as $receiver) {
                     $email->from(Setting::get('admin_email'), Setting::get('admin_title'));
                     $email->to($receiver);
