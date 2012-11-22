@@ -34,6 +34,10 @@ if (!defined('IN_CMS')) { exit(); }
             <td><textarea name="setting[error_message]"><?php echo $settings['error_message']; ?></textarea></td>
         </tr>
         <tr>
+            <td><strong><?php echo __('Copy message'); ?></strong></td>
+            <td><textarea name="setting[copy_message]"><?php echo $settings['copy_message']; ?></textarea></td>
+        </tr>
+        <tr>
             <td colspan="2">
                 <br />
                 <input type="submit" name="save" value="<?php echo __('Save Settings'); ?>" />

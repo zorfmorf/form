@@ -60,12 +60,14 @@ class SubmittedForm {
             }
         }
         
+        $copy_message = Plugin::getSetting('copy_message', 'form');
+        
         if (isset($sender) && !empty($sender)) {
             $email = new Email(array('mailtype' => 'html'));
             $email->from(Setting::get('admin_email'), Setting::get('admin_title'));
             $email->to($sender);
             $email->subject($this->form->name);
-            $email->message($email_body);
+            $email->message($copy_message . $email_body);
             $email->send();
         }
         

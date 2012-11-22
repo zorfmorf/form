@@ -17,7 +17,8 @@ if (!defined('IN_CMS')) { exit(); }
 Plugin::setAllSettings(array(
     'success_message' => '<p>The form has been submitted succesfully.</p>',
     'invalid_message' => '<p>The form has not been submitted.</p>',
-    'error_message' => '<p>An error has ocurred and the email has not been sent. Please try again.</p>'
+    'error_message' => '<p>An error has ocurred and the email has not been sent. Please try again.</p>',
+    'copy_message' => '<p>We have recieved your submission. This is a copy of the data you have sent to us.</p>'
 ), 'form');
 
 $permissions = array(
