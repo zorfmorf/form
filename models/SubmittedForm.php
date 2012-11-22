@@ -48,7 +48,7 @@ class SubmittedForm {
         $receivers = explode(';', $this->form->mail_to);
         foreach ($receivers as $receiver) {
             $email->from(Setting::get('admin_email'), Setting::get('admin_title'));
-            if (isset($sender)) {
+            if (isset($sender) && !empty($sender)) {
                 $email->replyTo($sender);
             }
             $email->to(trim($receiver));
