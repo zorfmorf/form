@@ -41,45 +41,16 @@ function display_form($id, $html5 = false) {
         if (get_request_method() == 'POST') {
             (object) $data = $_POST['form'];
             if ($form->validate($data)) {
-                use_helper('Email');
+                $subm_form = new SubmittedForm($form, $data);
                 
-                $email_body = '';
-                
-                $email_body .= "<table style=\"font: 12px/18px 'Arial','Helvetica',sans-serif;\">";
-                foreach($form->fields as $field) {
-                    $value = $data[$field->slug];
-                    
-                    $email_body .= '<tr><th style="text-align: left; vertical-align: top; white-space:nowrap;">'. $field->label .':</th><td style="text-align: left; vertical-align: top;">'.nl2br($value)."</td></tr>";
+                if ($subm_form->save()) {
+                    echo Plugin::getSetting('success_message', 'form');
                 }
-                $email_body .= '</table>';
-                
-                $email = new Email(array('mailtype' => 'html'));
-                
-                $errors = 0;
-                
-                $receivers = trim(explode(';', $form->mail_to));
-                foreach ($receivers as $receiver) {
-                    $email->from(Setting::get('admin_email'), Setting::get('admin_title'));
-                    if (isset($sender)) {
-                        $email->replyTo($sender);
-                    }
-                    $email->to($receiver);
-                    $email->subject($form->name);
-                    $email->message($email_body);
-
-                    if(!$email->send()) {
-                        $errors++;
-                    }
-                }
-                
-                if ($errors > 0) {
+                else {
                     $form->values = $data;
 
                     echo Plugin::getSetting('error_message', 'form');
                     $form->display($html5);
-                }
-                else {
-                    echo Plugin::getSetting('success_message', 'form');
                 }
             }
             else {
