@@ -35,7 +35,9 @@ foreach ($permissions as $permission) {
 }
 
 $PDO = Record::getConnection();
+$driver = strtolower($PDO->getAttribute(Record::ATTR_DRIVER_NAME));
 
+if($driver == 'mysql'){
 $sql = "CREATE TABLE IF NOT EXISTS `".TABLE_PREFIX."form` (
   `id` int(1) NOT NULL auto_increment,
   `name` varchar(255) NOT NULL,
@@ -46,6 +48,7 @@ $sql = "CREATE TABLE IF NOT EXISTS `".TABLE_PREFIX."form` (
   `updated_by_id` int(1) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ;";
+
 
 $PDO->exec($sql);
 
@@ -74,3 +77,39 @@ $sql = "CREATE TABLE IF NOT EXISTS `".TABLE_PREFIX."form_field_option` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ;";
 
 $PDO->exec($sql);
+
+} elseif($driver == 'sqlite'){
+   
+    
+    $sql = "CREATE TABLE IF NOT EXISTS `".TABLE_PREFIX."form` (
+  `id` INTEGER NOT NULL PRIMARY KEY,
+  `name` varchar(255) NOT NULL,
+  `mail_to` varchar(255) NOT NULL,
+  `created_on` datetime NOT NULL,
+  `updated_on` datetime NOT NULL,
+  `created_by_id` int(1) NOT NULL,
+  `updated_by_id` int(1) NOT NULL 
+  );";
+    $PDO->exec($sql);
+    
+$sql = "CREATE TABLE IF NOT EXISTS `".TABLE_PREFIX."form_field` (
+  `id`  INTEGER NOT NULL PRIMARY KEY,
+  `label` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `type` varchar(50) NOT NULL,
+  `required` tinyint(1) DEFAULT 0,
+  `form_id` int(1) NOT NULL,
+  `position` int(1) DEFAULT 0 );";
+
+$PDO->exec($sql);
+
+$sql = "CREATE TABLE IF NOT EXISTS `".TABLE_PREFIX."form_field_option` (
+  `id` INTEGER NOT NULL PRIMARY KEY,
+  `label` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `field_id` int(1) NOT NULL,
+  `position` int(1) DEFAULT 0);";
+
+ $PDO->exec($sql);   
+    
+}
