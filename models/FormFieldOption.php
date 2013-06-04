@@ -28,6 +28,25 @@ class FormFieldOption extends Record {
         
         return true;
     }
+
+    public function beforeInsert() {
+        $this->slug = $this->uniqueSlug();
+
+        return true;
+    }
+
+    public function uniqueSlug($i = 1) {
+        $slug = $this->slug;
+        if ($i > 1) {
+            $slug .= '-' . $i;
+        }
+
+        if ($duplicate = self::findOneFrom('FormFieldOption', 'slug = ? AND field_id = ?', array($slug, $this->field_id))) {
+            $i++;
+            $slug = $this->uniqueSlug($i);
+        }
+        return $slug;
+    }
     
     public static function deleteByFieldId($field_id) {
         $field_id = (int) $field_id;

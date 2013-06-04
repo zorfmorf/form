@@ -45,6 +45,25 @@ class FormField extends Record {
         
         return true;
     }
+
+    public function beforeInsert() {
+        $this->slug = $this->uniqueSlug();
+
+        return true;
+    }
+
+    public function uniqueSlug($i = 1) {
+        $slug = $this->slug;
+        if ($i > 1) {
+            $slug .= '-' . $i;
+        }
+
+        if ($duplicate = self::findOneFrom('FormField', 'slug = ? AND form_id = ?', array($slug, $this->form_id))) {
+            $i++;
+            $slug = $this->uniqueSlug($i);
+        }
+        return $slug;
+    }
     
     public static function deleteByFormId($form_id) {
         $form_id = (int) $form_id;
