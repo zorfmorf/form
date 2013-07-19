@@ -28,10 +28,29 @@ $permissions = array(
     'form_delete'
 );
 
-foreach ($permissions as $permission) {
-    $perm = new Permission();
-    $perm->name = $permission;
-    $perm->save();
+$roles = array(
+    'administrator',
+    'editor'
+);
+
+$new_perms = array();
+
+foreach ($permissions as $permission_name) {
+    if (!$perm = Permission::findByName($permission_name)) {
+        $perm = new Permission();
+        $perm->name = $permission_name;
+        $perm->save();
+    }
+
+    $new_perms[] = $perm;
+}
+
+foreach ($roles as $role_name) {
+    if ($role = Role::findByName($role_name)) {
+        $perms = array_merge(RolePermission::findPermissionsFor($role->id), $new_perms);
+
+        RolePermission::savePermissionsFor($role->id, $perms);
+    }
 }
 
 $PDO = Record::getConnection();
