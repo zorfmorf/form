@@ -1,39 +1,3 @@
-<style>
-form dt, form dd {
-    display: block;
-    padding: 0 0 7px;
-}
-
-form dt {
-    clear: left;
-    float: left;
-    overflow: hidden;
-    width: 160px;
-}
-
-form dd {
-    float: left;
-    margin-left: 5px;
-}
-
-label.required {
-    font-weight: bold;
-}
-
-label.required:after {
-    content: ' *';
-}
-
-label.invalid {
-    color: #f00;
-}
-
-button {
-    display: block;
-    clear: both;
-}
-</style>
-
 <form action="<?php echo $_SERVER['REQUEST_URI']; ?>" method="post">
 <dl>
     <?php foreach($form->fields as $field): ?>
@@ -89,8 +53,8 @@ button {
     </dd>
     <?php endforeach; ?>
 
-    <dt><label for="mellis"><?php echo __('Humans should leave this field empty'); ?></label></dt>
-    <dd><input type="text" class="mellis" name="mellis" id="mellis" /></dd>
+    <dt class="mellis"><label for="mellis"><?php echo __('Humans should leave this field empty'); ?></label></dt>
+    <dd class="mellis"><input type="text" class="mellis" name="mellis" id="mellis" /></dd>
 </dl>
 
 <button type="submit"><?php echo __('Submit'); ?></button>

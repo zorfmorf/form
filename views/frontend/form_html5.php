@@ -53,8 +53,8 @@
     </dd>
     <?php endforeach; ?>
 
-    <dt><label for="mellis"><?php echo __('Humans should leave this field empty'); ?></label></dt>
-    <dd><input type="text" class="mellis" name="mellis" id="mellis" /></dd>
+    <dt class="mellis"><label for="mellis"><?php echo __('Humans should leave this field empty'); ?></label></dt>
+    <dd class="mellis"><input type="text" class="mellis" name="mellis" id="mellis" /></dd>
 </dl>
 
 <button type="submit"><?php echo __('Submit'); ?></button>
