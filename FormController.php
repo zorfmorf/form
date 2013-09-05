@@ -56,6 +56,10 @@ class FormController extends PluginController {
         
         redirect(get_url('plugin/form/forms'));
     }
+
+    public function documentation() {
+        $this->display('form/views/documentation/index');
+    }
     
     public function edit($id) {
         if (is_numeric($id)) {

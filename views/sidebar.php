@@ -33,6 +33,12 @@ if (!defined('IN_CMS')) { exit(); }
         <?php echo __('Settings'); ?>
     </a>
 </p>
+<p class="button">
+    <a href="<?php echo get_url("plugin/form/documentation"); ?>">
+        <img width="32" height="32" src="<?php echo URL_PUBLIC; ?>wolf/icons/page-32.png" align="middle" alt="<?php echo __('Documentation'); ?>" />
+        <?php echo __('Documentation'); ?>
+    </a>
+</p>
 <div class="box">
     <h2><?php echo __('Form plugin'); ?></h2>
     <p><?php echo __('The Form plugin is a third-party plugin that lets you create and display forms on your installation of Wolf CMS.'); ?></p>
