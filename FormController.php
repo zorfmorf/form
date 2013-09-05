@@ -19,7 +19,7 @@ class FormController extends PluginController {
     
     public function __construct() {
         $this->setLayout('backend');
-        $this->assignToLayout('sidebar', new View('../../plugins/form/views/backend/sidebar'));
+        $this->assignToLayout('sidebar', new View('../../plugins/form/views/sidebar'));
     }
     
     public function add() {
@@ -30,7 +30,7 @@ class FormController extends PluginController {
         $data = Flash::get('post_data');
         $form = new Form($data);
         
-        $this->display('form/views/backend/edit', array(
+        $this->display('form/views/form/edit', array(
             'action' => 'add',
             'form' => $form
         ));
@@ -65,7 +65,7 @@ class FormController extends PluginController {
             }
             
             if ($form = Form::findById($id)) {
-                $this->display('form/views/backend/edit', array(
+                $this->display('form/views/form/edit', array(
                     'action' => 'edit',
                     'form' => $form
                 ));
@@ -82,7 +82,7 @@ class FormController extends PluginController {
     }
     
     public function forms() {
-        $this->display('form/views/backend/forms', array(
+        $this->display('form/views/form/index', array(
             'forms' => Form::findAll()
         ));
     }
@@ -97,7 +97,7 @@ class FormController extends PluginController {
             Flash::setNow('success', __('Settings have been saved!'));
         }
         
-        $this->display('form/views/backend/settings', array(
+        $this->display('form/views/settings/index', array(
             'settings' => Plugin::getAllSettings(self::PLUGIN_NAME)
         ));
     }
@@ -144,7 +144,7 @@ class FormController extends PluginController {
         if ($errors !== false) {
             Flash::setNow('error', implode('<br />', $errors));
             
-            $this->display('form/views/backend/edit', array(
+            $this->display('form/views/form/edit', array(
                 'action' => $action,
                 'form' => (object) $form
             ));

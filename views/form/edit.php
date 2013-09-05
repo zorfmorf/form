@@ -46,7 +46,7 @@ if (!defined('IN_CMS')) { exit(); }
 $current_id = 1;
 
 foreach ($form->fields as $field) {
-    echo new View('../../plugins/form/views/backend/field_row', array(
+    echo new View('../../plugins/form/views/form/field_row', array(
         'field' => (object) $field,
         'current_id' => $current_id,
         'types' => form_field_types()
@@ -63,7 +63,7 @@ foreach ($form->fields as $field) {
 var current_id = <?php echo $current_id; ?>;
 
 function appendField() {
-    var append = '<?php echo new View('../../plugins/form/views/backend/field_row', array(
+    var append = '<?php echo new View('../../plugins/form/views/form/field_row', array(
         'current_id' => ':current_id',
         'types' => form_field_types()
     )); ?>';
