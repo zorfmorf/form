@@ -39,28 +39,30 @@ Plugin::addController('form', __('Forms'), 'form_builder_view', true);
 function display_form($id, $html5 = false) {
     if ($form = Form::findById($id)) {
         if (get_request_method() == 'POST') {
-            (object) $data = $_POST['form'];
-            if ($form->validate($data)) {
-                $subm_form = new SubmittedForm($form, $data);
-                
-                if ($subm_form->save()) {
-                    echo Plugin::getSetting('success_message', 'form');
-                }
-                else {
-                    $form->values = $data;
+            if ($_POST['check'] == '') {
+                (object) $data = $_POST['form'];
+                if ($form->validate($data)) {
+                    $subm_form = new SubmittedForm($form, $data);
+                    
+                    if ($subm_form->save()) {
+                        echo Plugin::getSetting('success_message', 'form');
+                    } else {
+                        $form->values = $data;
 
-                    echo Plugin::getSetting('error_message', 'form');
+                        echo Plugin::getSetting('error_message', 'form');
+                        $form->display($html5);
+                    }
+                } else {
+                    $form->values = $data;
+                    
+                    echo Plugin::getSetting('invalid_message', 'form');
                     $form->display($html5);
                 }
-            }
-            else {
-                $form->values = $data;
-                
+            } else {
                 echo Plugin::getSetting('invalid_message', 'form');
                 $form->display($html5);
             }
-        }
-        else {
+        } else {
             $form->display($html5);
         }
         
