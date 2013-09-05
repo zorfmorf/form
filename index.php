@@ -39,7 +39,7 @@ Plugin::addController('form', __('Forms'), 'form_builder_view', true);
 function display_form($id, $html5 = false) {
     if ($form = Form::findById($id)) {
         if (get_request_method() == 'POST') {
-            if ($_POST['check'] == '') {
+            if ($_POST['mellis'] == '') {
                 (object) $data = $_POST['form'];
                 if ($form->validate($data)) {
                     $subm_form = new SubmittedForm($form, $data);
