@@ -38,8 +38,8 @@ if (!defined('IN_CMS')) { exit(); }
         <th><?php echo __('Label'); ?></th>
         <th><?php echo __('Type'); ?></th>
         <th><?php echo __('Options'); ?> *</th>
-        <th><?php echo __('Required'); ?></th>
-        <th><?php echo __('Delete'); ?></th>
+        <th class="set_required"><?php echo __('Required'); ?></th>
+        <th class="delete"><?php echo __('Delete'); ?></th>
     </tr>
 <?php
 
