@@ -14,15 +14,18 @@ if (!defined('IN_CMS')) { exit(); }
  * @version     0.1.2
  */
 
-class FormController extends PluginController {
+class FormController extends PluginController
+{
     const PLUGIN_NAME = 'form';
     
-    public function __construct() {
+    public function __construct()
+    {
         $this->setLayout('backend');
         $this->assignToLayout('sidebar', new View('../../plugins/form/views/sidebar'));
     }
     
-    public function add() {
+    public function add()
+    {
         if (get_request_method() == 'POST') {
             return $this->_save('add');
         }
@@ -36,7 +39,8 @@ class FormController extends PluginController {
         ));
     }
     
-    public function delete($id) {
+    public function delete($id)
+    {
         if (!is_numeric($id)) {
             redirect(get_url('plugin/form/forms'));
         }
@@ -45,25 +49,24 @@ class FormController extends PluginController {
             if ($form->delete()) {
                 Observer::notify('form_delete', $form);
                 Flash::set('success', __("The form ':name' has been deleted!", array(':name' => $form->name)));
-            }
-            else {
+            } else {
                 Flash::set('error', __("An error has occured, therefore form ':name' could not be deleted!", array(':name' => $form->name)));
             }
-        }
-        else {
+        } else {
             Flash::set('error', __('The form could not be found!'));
         }
         
         redirect(get_url('plugin/form/forms'));
     }
 
-    public function documentation() {
+    public function documentation()
+    {
         $this->display('form/views/documentation/index');
     }
     
-    public function edit($id) {
+    public function edit($id)
+    {
         if (is_numeric($id)) {
-        
             if (get_request_method() == 'POST') {
                 return $this->_save('edit', $id);
             }
@@ -73,29 +76,30 @@ class FormController extends PluginController {
                     'action' => 'edit',
                     'form' => $form
                 ));
-            }
-            else {
+            } else {
                 Flash::set('error', __('The form could not be found!'));
                 redirect(get_url('plugin/form/forms'));
             }
-        }
-        else {
+        } else {
             Flash::set('error', __('The form could not be found!'));
             redirect(get_url('plugin/form/forms'));
         }
     }
     
-    public function forms() {
+    public function forms()
+    {
         $this->display('form/views/form/index', array(
             'forms' => Form::findAll()
         ));
     }
     
-    public function index() {
+    public function index()
+    {
         $this->forms();
     }
     
-    public function settings() {
+    public function settings()
+    {
         if (isset($_POST['save']) && $_POST['save'] == __('Save Settings')) {
             Plugin::setAllSettings($_POST['setting'], self::PLUGIN_NAME);
             Flash::setNow('success', __('Settings have been saved!'));
@@ -106,7 +110,8 @@ class FormController extends PluginController {
         ));
     }
     
-    private function _save($action, $id=false) {
+    private function _save($action, $id=false)
+    {
         if ($action == 'edit' && !$id) {
             throw new Exception('Trying to edit form when $id is false.');
         }
@@ -130,8 +135,7 @@ class FormController extends PluginController {
         foreach ($emails as $email) {
             if (empty($email)) {
                 $errors[] = ('You have to specify one or more valid email addresses!');
-            }
-            elseif (!Validate::email($email)) {
+            } elseif (!Validate::email($email)) {
                 $errors[] = ('You have to specify one or more valid email addresses!');
             }
         }
@@ -139,8 +143,7 @@ class FormController extends PluginController {
         if ($action == 'add') {
             $form = new Form();
             $form->setFromData($data);
-        }
-        else {
+        } else {
             $form = Form::findById($id);
             $form->setFromData($data);
         }
@@ -156,15 +159,13 @@ class FormController extends PluginController {
         
         if ($action == 'add') {
             Observer::notify('form_add_before_save', $form);
-        }
-        else {
+        } else {
             Observer::notify('form_edit_before_save', $form);
         }
         
         if ($form->save()) {
             Flash::set('success', __('Form has been saved!'));
-        }
-        else {
+        } else {
             Flash::set('error', __('Form has not been saved!'));
             
             echo '<pre>';
@@ -180,16 +181,14 @@ class FormController extends PluginController {
         
         if ($action == 'add') {
             Observer::notify('form_add_after_save', $form);
-        }
-        else {
+        } else {
             Observer::notify('form_edit_after_save', $form);
         }
         
         // save and quit or save and continue editing ?
         if (isset($_POST['commit'])) {
             redirect(get_url('plugin/form/forms'));
-        }
-        else {
+        } else {
             redirect(get_url('plugin/form/edit/'.$form->id));
         }
     }

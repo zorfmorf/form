@@ -14,7 +14,8 @@ if (!defined('IN_CMS')) { exit(); }
  * @version     0.1.2
  */
 
-class Form extends Record {
+class Form extends Record
+{
     const TABLE_NAME = 'form';
     
     public $id;
@@ -28,36 +29,40 @@ class Form extends Record {
     
     public $values = array();
     
-    public function __construct() {
+    public function __construct()
+    {
         if (!isset($this->fields)) {
             $this->fields = FormField::findByFormId($this->id);
         }
     }
     
-    public function beforeDelete() {
+    public function beforeDelete()
+    {
         if (!FormField::deleteByFormId($this->id)) {
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }
     
-    public function beforeInsert() {
+    public function beforeInsert()
+    {
         $this->created_on       = date('Y-m-d H:i:s');
         $this->created_by_id    = AuthUser::getRecord()->id;
 
         return true;
     }
     
-    public function beforeSave() {
+    public function beforeSave()
+    {
         $this->updated_on       = date('Y-m-d H:i:s');
         $this->updated_by_id    = AuthUser::getRecord()->id;
         
         return true;
     }
     
-    public function afterSave() {
+    public function afterSave()
+    {
         FormField::deleteByFormId($this->id);
         
         foreach($this->fields as $field_properties) {
@@ -92,14 +97,14 @@ class Form extends Record {
         return true;
     }
     
-    public function display($html5 = false) {
+    public function display($html5 = false)
+    {
         if ($html5) {
             // display html5 version
             echo new View('../../plugins/form/views/frontend/form_html5', array(
                 'form' => $this
             ));
-        }
-        else {
+        } else {
             // display html4 version
             echo new View('../../plugins/form/views/frontend/form_html', array(
                 'form' => $this
@@ -107,28 +112,33 @@ class Form extends Record {
         }
     }
     
-    public function emails() {
+    public function emails()
+    {
         $emails = explode(';',$this->mail_to);
         
         return $emails;
     }
     
-    public static function findAll() {
+    public static function findAll()
+    {
         return Record::findAllFrom('Form');
     }
     
-    public static function findById($id) {
+    public static function findById($id)
+    {
         return Record::findByIdFrom('Form', $id);
     }
     
-    public function getColumns() {
+    public function getColumns()
+    {
         return array(
             'id', 'name', 'mail_to',
             'created_on', 'updated_on', 'created_by_id', 'updated_by_id'
         );
     }
     
-    public function validate($data = false) {
+    public function validate($data = false)
+    {
         $fields = FormField::findByFormId($this->id);
         $data = (object) $data;
         $this->errors = array();
@@ -141,8 +151,7 @@ class Form extends Record {
                 $value = $data->$field_name;
                 
                 if (is_string($value) && trim($value != '')) $empty = false;
-            }
-            else {
+            } else {
                 $value = '';
             }
             

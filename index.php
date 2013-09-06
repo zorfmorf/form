@@ -36,7 +36,8 @@ AutoLoader::addFolder(FORM.'/models');
 
 Plugin::addController('form', __('Forms'), 'form_builder_view', true);
 
-function display_form($id, $html5 = false) {
+function display_form($id, $html5 = false)
+{
     if ($form = Form::findById($id)) {
         if (get_request_method() == 'POST') {
             if ($_POST['mellis'] == '') {
@@ -65,11 +66,11 @@ function display_form($id, $html5 = false) {
         } else {
             $form->display($html5);
         }
-        
     }
 }
 
-function form_field_types() {
+function form_field_types()
+{
     $types = FormField::typesArray();
     
     foreach ($types as $key => $type) {

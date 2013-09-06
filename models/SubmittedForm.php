@@ -14,17 +14,20 @@ if (!defined('IN_CMS')) { exit(); }
  * @version     0.1.2
  */
 
-class SubmittedForm {
+class SubmittedForm
+{
     public $form;
     public $submitted_fields;
     
-    public function __construct($form, $data) {
+    public function __construct($form, $data)
+    {
         $this->form = $form;
         $this->data = $data;
         $this->submitted_fields = $data;
     }
     
-    public function save() {
+    public function save()
+    {
         use_helper('Email');
                 
         $email_body = '';
@@ -79,7 +82,8 @@ class SubmittedForm {
         }
     }
     
-    public function validate() {
+    public function validate()
+    {
         if ($this->form instanceof Form and is_array($submitted_fields)) {
             return $this->form->validate($submitted_fields);
         }

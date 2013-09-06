@@ -14,7 +14,8 @@ if (!defined('IN_CMS')) { exit(); }
  * @version     0.1.2
  */
 
-class FormField extends Record {
+class FormField extends Record
+{
     const TABLE_NAME = 'form_field';
     
     public $id;
@@ -25,34 +26,38 @@ class FormField extends Record {
     public $form_id;
     public $position;
     
-    public function __construct() {
+    public function __construct()
+    {
         if (!isset($this->options)) {
             $this->options = FormFieldOption::findByFieldId($this->id);
         }
     }
     
-    public function beforeDelete() {
+    public function beforeDelete()
+    {
         if (!FormFieldOption::deleteByFieldId($this->id)) {
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }
     
-    public function beforeSave() {
+    public function beforeSave()
+    {
         $this->slug = Node::toSlug($this->label);
         
         return true;
     }
 
-    public function beforeInsert() {
+    public function beforeInsert()
+    {
         $this->slug = $this->uniqueSlug();
 
         return true;
     }
 
-    public function uniqueSlug($i = 1) {
+    public function uniqueSlug($i = 1)
+    {
         $slug = $this->slug;
         if ($i > 1) {
             $slug .= '-' . $i;
@@ -65,7 +70,8 @@ class FormField extends Record {
         return $slug;
     }
     
-    public static function deleteByFormId($form_id) {
+    public static function deleteByFormId($form_id)
+    {
         $form_id = (int) $form_id;
         
         $form_fields = self::findByFormId($form_id);
@@ -76,8 +82,7 @@ class FormField extends Record {
                     return false;
                 }
             }
-        }
-        elseif ($form_fields instanceof FormField) {
+        } elseif ($form_fields instanceof FormField) {
             if (!$form_fields->delete()) {
                 return false;
             }
@@ -86,13 +91,15 @@ class FormField extends Record {
         return true;
     }
     
-    public static function findByFormId($id) {
+    public static function findByFormId($id)
+    {
         $id = (int) $id;
         
         return Record::findAllFrom('FormField', 'form_id = ' . $id . ' ORDER BY position ASC, id ASC');
     }
     
-    public function getColumns() {
+    public function getColumns()
+    {
         return array(
             'id', 'label', 'slug',
             'type', 'required',
@@ -100,7 +107,8 @@ class FormField extends Record {
         );
     }
     
-    public static function typesArray() {
+    public static function typesArray()
+    {
         return array(
             'text' => array(
                 'label' => __('Text')
@@ -136,46 +144,39 @@ class FormField extends Record {
     }
     
     
-    public function validate($value = false) {
+    public function validate($value = false)
+    {
         use_helper('Validate');
         
         if (is_string($value) && trim($value) == '') {
             if ($this->required == 1) {
                 return false;
             }
-        }
-        else {
+        } else {
         
             if ($this->type == 'number') {
                 if (!Validate::numeric($value)) return false;
-            }
-            elseif ($this->type == 'postcode') {
+            } elseif ($this->type == 'postcode') {
                 if (!Validate::postcode(strtoupper($value))) return false;
-            }
-            elseif ($this->type == 'email_address') {
+            } elseif ($this->type == 'email_address') {
                 if (!Validate::email($value)) return false;
-            }
-            elseif ($this->type == 'phone_number') {
+            } elseif ($this->type == 'phone_number') {
                 if (!Validate::phone($value)) return false;
-            }
-            elseif ($this->type == 'url') {
+            } elseif ($this->type == 'url') {
                 if (!Validate::url($value)) return false;
-            }
-            elseif ($this->type == 'dropdown') {
+            } elseif ($this->type == 'dropdown') {
+                $options = FormFieldOption::findByFieldId($this->id);
+                foreach ($options as $option) {
+                    if ($value == $option->label) return true;
+                }
+                return false;
+            } elseif ($this->type == 'radio_buttons') {
                 $options = FormFieldOption::findByFieldId($this->id);
                 foreach ($options as $option) {
                     if ($value == $option->label) return true;
                 }
                 return false;
             }
-            elseif ($this->type == 'radio_buttons') {
-                $options = FormFieldOption::findByFieldId($this->id);
-                foreach ($options as $option) {
-                    if ($value == $option->label) return true;
-                }
-                return false;
-            }
-            
         }
         
         return true;
