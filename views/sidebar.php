@@ -17,25 +17,25 @@ if (!defined('IN_CMS')) { exit(); }
 ?>
 <p class="button">
     <a href="<?php echo get_url("plugin/form"); ?>">
-        <img width="32" height="32" src="<?php echo URL_PUBLIC; ?>wolf/icons/file-php-32.png" align="middle" alt="<?php echo __('Forms'); ?>" />
+        <img width="32" height="32" src="<?php echo FORM_IMAGES; ?>form-32.png" align="middle" alt="<?php echo __('Forms'); ?>" />
         <?php echo __('Forms'); ?>
     </a>
 </p>
 <p class="button">
     <a href="<?php echo get_url("plugin/form/add"); ?>">
-        <img width="32" height="32" src="<?php echo URL_PUBLIC; ?>wolf/icons/add-32.png" align="middle" alt="<?php echo __('Add form'); ?>" />
+        <img width="32" height="32" src="<?php echo FORM_IMAGES; ?>action-add-32.png" align="middle" alt="<?php echo __('Add form'); ?>" />
         <?php echo __('Add form'); ?>
     </a>
 </p>
 <p class="button">
     <a href="<?php echo get_url("plugin/form/settings"); ?>">
-        <img width="32" height="32" src="<?php echo URL_PUBLIC; ?>wolf/icons/settings-32.png" align="middle" alt="<?php echo __('Settings'); ?>" />
+        <img width="32" height="32" src="<?php echo FORM_IMAGES; ?>settings-32.png" align="middle" alt="<?php echo __('Settings'); ?>" />
         <?php echo __('Settings'); ?>
     </a>
 </p>
 <p class="button">
     <a href="<?php echo get_url("plugin/form/documentation"); ?>">
-        <img width="32" height="32" src="<?php echo URL_PUBLIC; ?>wolf/icons/page-32.png" align="middle" alt="<?php echo __('Documentation'); ?>" />
+        <img width="32" height="32" src="<?php echo FORM_IMAGES; ?>documentation-32.png" align="middle" alt="<?php echo __('Documentation'); ?>" />
         <?php echo __('Documentation'); ?>
     </a>
 </p>
