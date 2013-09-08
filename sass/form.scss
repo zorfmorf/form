@@ -55,7 +55,7 @@ body#body_plugin_form div#content {
 
     textarea {
         width: 100% !important;
-        min-height: 200px;
+        min-height: 100px;
     }
 
     span.actions {
@@ -64,6 +64,10 @@ body#body_plugin_form div#content {
 
     tr:hover span.actions {
         visibility: visible;
+    }
+
+    label {
+        font-weight: bold;
     }
 
 }

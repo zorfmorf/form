@@ -86,11 +86,14 @@ body#body_plugin_form div#content input.number {
 }
 body#body_plugin_form div#content textarea {
   width: 100% !important;
-  min-height: 200px;
+  min-height: 100px;
 }
 body#body_plugin_form div#content span.actions {
   visibility: hidden;
 }
 body#body_plugin_form div#content tr:hover span.actions {
   visibility: visible;
+}
+body#body_plugin_form div#content label {
+  font-weight: bold;
 }
