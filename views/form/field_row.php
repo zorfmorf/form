@@ -1,4 +1,7 @@
 <tr id="field-<?php echo $current_id; ?>" class="field"><?php
+if (isset($field->id)):
+?><input name="form[fields][<?php echo $current_id; ?>][id]" type="hidden" value="<?php echo $field->id; ?>" /><?php
+endif;
 ?><td><input name="form[fields][<?php echo $current_id; ?>][label]" type="text"<?php if(isset($field->label)): ?> value="<?php echo $field->label; ?>"<?php endif; ?> /></td><?php
 ?><td><select name="form[fields][<?php echo $current_id; ?>][type]"><?php foreach($types as $value => $type): ?><option value="<?php echo $value; ?>"<?php if (isset($field->type) && $field->type == $value): ?> selected="selected"<?php endif; ?>><?php echo $type; ?></option><?php endforeach; ?><?php
 ?></select></td><?php

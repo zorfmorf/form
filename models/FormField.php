@@ -32,6 +32,46 @@ class FormField extends Record
             $this->options = FormFieldOption::findByFieldId($this->id);
         }
     }
+
+    public function afterSave()
+    {
+        $old_options = FormFieldOption::findByFieldId($this->id);
+        $new_options = explode(';', $this->options);
+
+        foreach ($old_options as $old_option) {
+            $not_in = true;
+
+            foreach ($new_options as $key => $option_label) {
+                if ($old_option->label == $option_label) {
+                    $not_in = false;
+
+                    $old_option->label = $option_label;
+                    $old_option->field_id = $this->id;
+                    $old_option->position = $key + 1;
+                    $old_option->save();
+
+                    unset($new_options[$key]);
+                    break;
+                }
+            }
+
+            if ($not_in) {
+                $old_option->delete();
+            }
+        }
+
+        foreach ($new_options as $key => $option_label) {
+            if (trim($option_label) != '') {
+                $new_option = new FormFieldOption();
+                $new_option->label = $option_label;
+                $new_option->field_id = $this->id;
+                $new_option->position = $key + 1;
+                $new_option->save();
+            }
+        }
+        
+        return true;
+    }
     
     public function beforeDelete()
     {

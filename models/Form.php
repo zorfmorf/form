@@ -31,9 +31,7 @@ class Form extends Record
     
     public function __construct()
     {
-        if (!isset($this->fields)) {
-            $this->fields = FormField::findByFormId($this->id);
-        }
+        $this->fields();
     }
     
     public function beforeDelete()
@@ -63,35 +61,39 @@ class Form extends Record
     
     public function afterSave()
     {
-        FormField::deleteByFormId($this->id);
-        
-        foreach($this->fields as $field_properties) {
-            $form_field = new FormField();
-            $form_field->setFromData($field_properties);
-            $form_field->form_id = $this->id;
-            
-            if (trim($form_field->label) != '') {
-                if (!$form_field->save()) {
-                    return false;
-                }
-            }
-            
-            if (trim($form_field->options) != '') {
-                $pos = 1;
-                
-                $options = explode(';', $form_field->options);
-                foreach ($options as $option_label) {
-                    $option = new FormFieldOption();
-                    $option->label = $option_label;
-                    $option->field_id = $form_field->id;
-                    $option->position = $pos;
-                    if (!$option->save()) {
-                        return false;
+        $old_fields = FormField::findByFormId($this->id);
+        $new_fields = $this->fields;
+
+        print_r($new_fields);
+
+        foreach ($old_fields as $old_field) {
+            $not_in = true;
+
+            if (is_array($new_fields)) {
+                foreach ($new_fields as $key => $field) {
+                    if ($old_field->id == $field['id']) {
+                        $not_in = false;
+
+                        $old_field->setFromData($field);
+                        $old_field->save();
+
+                        unset($new_fields[$key]);
+                        break;
                     }
-                    
-                    $pos++;
                 }
             }
+
+            if ($not_in) {
+                $old_field->delete();
+            }
+        }
+
+        foreach ($new_fields as $field) {
+            $new_field = new FormField();
+            $new_field->setFromData($field);
+            $new_field->form_id = $this->id;
+
+            $new_field->save();
         }
         
         return true;
@@ -117,6 +119,15 @@ class Form extends Record
         $emails = explode(';',$this->mail_to);
         
         return $emails;
+    }
+
+    public function fields()
+    {
+        if (!isset($this->fields)) {
+            $this->fields = FormField::findByFormId($this->id);
+        }
+
+        return $this->fields;
     }
     
     public static function findAll()
