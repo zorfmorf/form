@@ -11,7 +11,7 @@ if (!defined('IN_CMS')) { exit(); }
  * 
  * @author      Nic Wortel <nic.wortel@nth-root.nl>
  * @copyright   Nic Wortel, 2012
- * @version     0.1.3
+ * @version     0.1.4
  */
 
 if(!defined("FORM")) {
@@ -26,7 +26,7 @@ Plugin::setInfos(array(
     'title'                 => __('Form'),
     'description'           => __('Lets you create and display forms.'),
     'author'                => 'Nic Wortel',
-    'version'               => '0.1.3',
+    'version'               => '0.1.4',
     'website'               => 'http://www.wolfcms.org/repository/111',
     'require_wolf_version'  => '0.7.4',
     'type'                  => 'backend'
