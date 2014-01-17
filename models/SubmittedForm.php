@@ -36,6 +36,10 @@ class SubmittedForm
         foreach($this->form->fields as $field) {
             $value = $this->data[$field->slug];
 
+            if (is_array($value)) {
+                $value = implode(', ', $value);
+            }
+
             $email_body .= '<tr><th style="text-align: left; vertical-align: top; white-space:nowrap;">'. $field->label .':</th><td style="text-align: left; vertical-align: top;">'.nl2br($value)."</td></tr>";
             
             if ($field->type == 'email_address') {
