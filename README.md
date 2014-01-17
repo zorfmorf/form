@@ -29,6 +29,6 @@ The sidebar will explain how to set up a form and display it on your website.
 Contributing
 ------------
 
-Would you like to help developing this plugin? Or would you like to submit a bug report or feature request? The [GitHub repository](https://github.com/NicNLD/wolfcms-form) is the right place for this.
+Would you like to help developing this plugin? Or would you like to submit a bug report or feature request? The [GitHub repository](https://github.com/nicwortel/wolfcms-form) is the right place for this.
 
 If you would like to contribute by translating the plugin to your language, head over to [Transifex.com](https://www.transifex.com/projects/p/wolfcms-form-plugin/).

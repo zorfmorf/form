@@ -11,7 +11,7 @@ if (!defined('IN_CMS')) { exit(); }
  * 
  * @author      Nic Wortel <nic.wortel@nth-root.nl>
  * @copyright   Nic Wortel, 2012
- * @version     0.1.4
+ * @version     0.1.5
  */
 
 ?>
@@ -101,7 +101,7 @@ form .mellis {
 <p><?php echo __('Do you want to contribute to the development of the Form plugin?'); ?></p>
 
 <p><?php echo __('You can report bugs and submit patches through the :github_link.', array(
-    ':github_link' => '<a href="https://github.com/NicNLD/wolfcms-form" target="_blank">' . __('GitHub repository') . '</a>'
+    ':github_link' => '<a href="https://github.com/nicwortel/wolfcms-form" target="_blank">' . __('GitHub repository') . '</a>'
 )); ?></p>
 
 <p><?php echo __('You can translate the plugin into your language using :transifex_link.', array(

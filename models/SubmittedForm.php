@@ -11,7 +11,7 @@ if (!defined('IN_CMS')) { exit(); }
  * 
  * @author      Nic Wortel <nic.wortel@nth-root.nl>
  * @copyright   Nic Wortel, 2012
- * @version     0.1.4
+ * @version     0.1.5
  */
 
 class SubmittedForm
@@ -35,6 +35,10 @@ class SubmittedForm
         $email_body .= "<table style=\"font: 12px/18px 'Arial','Helvetica',sans-serif;\">";
         foreach($this->form->fields as $field) {
             $value = $this->data[$field->slug];
+
+            if (is_array($value)) {
+                $value = implode(', ', $value);
+            }
 
             $email_body .= '<tr><th style="text-align: left; vertical-align: top; white-space:nowrap;">'. $field->label .':</th><td style="text-align: left; vertical-align: top;">'.nl2br($value)."</td></tr>";
             

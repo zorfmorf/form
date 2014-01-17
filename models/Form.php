@@ -11,7 +11,7 @@ if (!defined('IN_CMS')) { exit(); }
  * 
  * @author      Nic Wortel <nic.wortel@nth-root.nl>
  * @copyright   Nic Wortel, 2012
- * @version     0.1.4
+ * @version     0.1.5
  */
 
 class Form extends Record
@@ -161,7 +161,9 @@ class Form extends Record
             if (isset($data->$field_name)) {
                 $value = $data->$field_name;
                 
-                if (is_string($value) && trim($value != '')) $empty = false;
+                if ((is_string($value) && trim($value != '')) || (is_array($value) && count($value) > 0) ) {
+                    $empty = false;
+                }
             } else {
                 $value = '';
             }
