@@ -161,7 +161,9 @@ class Form extends Record
             if (isset($data->$field_name)) {
                 $value = $data->$field_name;
                 
-                if (is_string($value) && trim($value != '')) $empty = false;
+                if ((is_string($value) && trim($value != '')) || (is_array($value) && count($value) > 0) ) {
+                    $empty = false;
+                }
             } else {
                 $value = '';
             }
