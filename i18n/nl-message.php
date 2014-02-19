@@ -70,6 +70,7 @@ return array(
     'To create a new form, click on the Add form button.' => 'Klik op de Formulier toevoegen knop om een nieuw formulier aan te maken.',
     'Type' => 'Type',
     'Under options you can specify the different options in case of a dropdown list, checkboxes or radio buttons. Seperate with a semicolon.' => 'Onder opties kunt u de verschillende opties specificeren voor een keuzelijst, selectievakjes of keuzerondjes. Scheid de opties met een puntkomma.',
+    'URL' => 'URL',
     'Use the following piece of PHP code in the page were you want to include the form:' => 'Gebruik de volgende PHP code in de pagina waar u het formulier wilt tonen:',
     'You can report bugs and submit patches through the :github_link.' => 'U kunt bugs melden en verbeteringen indienen in de :github_link.',
     'You can seperate multiple e-mail addresses with a semicolon.' => 'U kunt meerdere e-mailadressen scheiden met een puntkomma.',
