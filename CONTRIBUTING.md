@@ -34,4 +34,4 @@ When you've pushed your changes to your repository on GitHub, you can submit a p
 Submitting translations
 -----------------------
 
-We use [Transifex.com](https://www.transifex.com/) to translate the plugin to different languages. If you'd like to help, please [create an account](https://www.transifex.com/signup/) at Transifex if you don't already have one. At the plugin's [project page](https://www.transifex.com/projects/p/wolfcms-form-plugin/) you can request a new language team or join an existing one.
+We use [Transifex.com](https://www.transifex.com/) to translate the plugin to different languages. If you'd like to help by translating the plugin to your native language, please [create an account](https://www.transifex.com/signup/) at Transifex if you don't already have one. At the plugin's [project page](https://www.transifex.com/projects/p/wolfcms-form-plugin/) you can request a new language team or join an existing one.
