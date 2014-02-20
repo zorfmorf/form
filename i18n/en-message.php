@@ -11,7 +11,7 @@ if (!defined('IN_CMS')) { exit(); }
  * 
  * @author      Nic Wortel <nic.wortel@nth-root.nl>
  * @copyright   Nic Wortel, 2012
- * @version     0.1.5
+ * @version     0.1.6
  */
 
 return array(
@@ -70,6 +70,7 @@ return array(
     'To create a new form, click on the Add form button.' => 'To create a new form, click on the Add form button.',
     'Type' => 'Type',
     'Under options you can specify the different options in case of a dropdown list, checkboxes or radio buttons. Seperate with a semicolon.' => 'Under options you can specify the different options in case of a dropdown list, checkboxes or radio buttons. Seperate with a semicolon.',
+    'URL' => 'URL',
     'Use the following piece of PHP code in the page were you want to include the form:' => 'Use the following piece of PHP code in the page were you want to include the form:',
     'You can report bugs and submit patches through the :github_link.' => 'You can report bugs and submit patches through the :github_link.',
     'You can seperate multiple e-mail addresses with a semicolon.' => 'You can seperate multiple e-mail addresses with a semicolon.',

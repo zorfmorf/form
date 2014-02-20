@@ -11,7 +11,7 @@ if (!defined('IN_CMS')) { exit(); }
  * 
  * @author      Nic Wortel <nic.wortel@nth-root.nl>
  * @copyright   Nic Wortel, 2012
- * @version     0.1.5
+ * @version     0.1.6
  */
 
 class Form extends Record
@@ -62,9 +62,11 @@ class Form extends Record
     public function afterSave()
     {
         $old_fields = FormField::findByFormId($this->id);
-        $new_fields = $this->fields;
-
-        print_r($new_fields);
+        if (isset($_POST['fields'])) {
+            $new_fields = $_POST['fields'];
+        } else {
+            $new_fields = array();
+        }
 
         foreach ($old_fields as $old_field) {
             $not_in = true;
