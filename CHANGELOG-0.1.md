@@ -4,7 +4,7 @@ CHANGELOG for 0.1.x
 This changelog references the relevant changes (bug and security fixes) done
 in 0.1 minor versions.
 
-* 0.1.6 (xxxx-xx-xx)
+* 0.1.6 (2014-02-20)
 
  * Added documentation on how to contribute to the plugin's development
  * Translation: Added French translation (loljak)
