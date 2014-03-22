@@ -101,9 +101,9 @@ form .mellis {
 <p><?php echo __('Do you want to contribute to the development of the Form plugin?'); ?></p>
 
 <p><?php echo __('You can report bugs and submit patches through the :github_link.', array(
-    ':github_link' => '<a href="https://github.com/nicwortel/wolfcms-form" target="_blank">' . __('GitHub repository') . '</a>'
+    ':github_link' => '<a href="https://github.com/wolf-pack/form" target="_blank">' . __('GitHub repository') . '</a>'
 )); ?></p>
 
 <p><?php echo __('You can translate the plugin into your language using :transifex_link.', array(
-    ':transifex_link' => '<a href="https://www.transifex.com/projects/p/wolfcms-form-plugin/" target="_blank">Transifex.com</a>'
+    ':transifex_link' => '<a href="https://www.transifex.com/projects/p/wolfpack-form/" target="_blank">Transifex.com</a>'
 )); ?></p>
