@@ -22,3 +22,7 @@
 *.jpg binary
 *.gif binary
 *.ico binary
+
+# Exclude the following files/folders from git archive
+src/            export-ignore
+.gitattributes  export-ignore
