@@ -1,7 +1,7 @@
 {
-    "name": "nicwortel/form",
+    "name": "wolfpack/form",
     "description": "The Form plugin lets you create and display forms in Wolf CMS.",
-    "keywords": ["form", "contact", "form builder"],
+    "keywords": ["form", "contact", "form builder", "wolfpack"],
     "homepage": "https://wolfcms.org",
     "license": "GPLv3",
     "authors": [
