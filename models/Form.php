@@ -101,21 +101,6 @@ class Form extends Record
         return true;
     }
     
-    public function display($html5 = false)
-    {
-        if ($html5) {
-            // display html5 version
-            echo new View('../../plugins/form/views/frontend/form_html5', array(
-                'form' => $this
-            ));
-        } else {
-            // display html4 version
-            echo new View('../../plugins/form/views/frontend/form_html', array(
-                'form' => $this
-            ));
-        }
-    }
-    
     public function emails()
     {
         $emails = explode(';',$this->mail_to);

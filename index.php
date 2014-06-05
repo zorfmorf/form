@@ -38,6 +38,11 @@ Plugin::addController('form', __('Forms'), 'form_builder_view', true);
 
 function display_form($id, $html5 = false)
 {
+    $view = '../../plugins/form/views/frontend/form_html';
+    if ($html5) {
+        $view .= '5';
+    }
+
     if ($form = Form::findById($id)) {
         if (get_request_method() == 'POST') {
             if ($_POST['mellis'] == '') {
@@ -51,20 +56,28 @@ function display_form($id, $html5 = false)
                         $form->values = $data;
 
                         echo Plugin::getSetting('error_message', 'form');
-                        $form->display($html5);
+                        echo new View($view, array(
+                            'form' => $form
+                        ));
                     }
                 } else {
                     $form->values = $data;
                     
                     echo Plugin::getSetting('invalid_message', 'form');
-                    $form->display($html5);
+                    echo new View($view, array(
+                        'form' => $form
+                    ));
                 }
             } else {
                 echo Plugin::getSetting('invalid_message', 'form');
-                $form->display($html5);
+                echo new View($view, array(
+                    'form' => $form
+                ));
             }
         } else {
-            $form->display($html5);
+            echo new View($view, array(
+                'form' => $form
+            ));
         }
     }
 }
