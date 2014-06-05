@@ -121,12 +121,7 @@ class Form extends Record
     {
         return Record::findAllFrom('Form');
     }
-    
-    public static function findById($id)
-    {
-        return Record::findByIdFrom('Form', $id);
-    }
-    
+
     public function getColumns()
     {
         return array(

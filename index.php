@@ -28,7 +28,7 @@ Plugin::setInfos(array(
     'author'                => 'Nic Wortel',
     'version'               => '0.1.6',
     'website'               => 'http://www.wolfcms.org/repository/111',
-    'require_wolf_version'  => '0.7.4',
+    'require_wolf_version'  => '0.8.0',
     'type'                  => 'backend'
 ));
 
