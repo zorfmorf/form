@@ -159,9 +159,6 @@ class FormField extends Record
             'number' => array(
                 'label' => __('Number')
             ),
-            'postcode' => array(
-                'label' => __('Postal code')
-            ),
             'email_address' => array(
                 'label' => __('Email address')
             ),
