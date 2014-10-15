@@ -3,15 +3,8 @@ if (!defined('IN_CMS')) { exit(); }
 
 /**
  * Form
- * 
+ *
  * The Form plugin is a third-party plugin that lets you create and display forms on your installation of Wolf CMS.
- * 
- * @package     Plugins
- * @subpackage  form
- * 
- * @author      Nic Wortel <nic.wortel@nth-root.nl>
- * @copyright   Nic Wortel, 2012
- * @version     0.2.0
  */
 
 class FormFieldOption extends Record
