@@ -51,6 +51,6 @@ if (!defined('IN_CMS')) { exit(); }
     <p>4. <?php echo __('Use the following piece of PHP code in the page were you want to include the form:'); ?></p>
     <p><code>&lt;?php display_form(id); ?&gt;</code></p>
     <p><?php echo __("Don't forget to replace id with the id of your form!"); ?></p>
-    <p><?php echo __("Do you want a HTML5 compliant form? Use the following code:"); ?></p>
-    <p><code>&lt;?php display_form(id, true); ?&gt;</code></p>
+    <p><?php echo __("By default, the plugin uses the new HTML5 form elements. If you don't want to use them, pass a second parameter to the function:"); ?></p>
+    <p><code>&lt;?php display_form(id, false); ?&gt;</code></p>
 </div>

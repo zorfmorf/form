@@ -36,7 +36,7 @@ AutoLoader::addFolder(FORM.'/models');
 
 Plugin::addController('form', __('Forms'), 'form_builder_view', true);
 
-function display_form($id, $html5 = false)
+function display_form($id, $html5 = true)
 {
     $view = '../../plugins/form/views/frontend/form_html';
     if ($html5) {
