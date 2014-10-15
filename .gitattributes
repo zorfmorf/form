@@ -26,4 +26,3 @@
 # Exclude the following files/folders from git archive
 src/            export-ignore
 .gitattributes  export-ignore
-.gitignore      export-ignore
